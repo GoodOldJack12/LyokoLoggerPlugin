@@ -4,29 +4,27 @@ namespace LoggerPlugin
 {
     public class LoggerPlugin : LyokoAPIPlugin
     {
-        public string Name { get; } = "LoggerPlugin";
-        public string Author { get; } = "GoodOldJack12";
+        public override string Name { get; } = "LoggerPlugin";
+        public override string Author { get; } = "GoodOldJack12";
         public bool Enabled { get; private set; }
-        
-        public bool OnEnable()
+
+        protected override bool OnEnable()
         {
-            Enabled = true;
             Logger.StartLogging();
             return true;
         }
 
-        public bool OnDisable()
+        protected override bool OnDisable()
         {
-            Enabled = false;
             Logger.StopLogging();
             return false;
         }
 
-        public void OnGameStart(bool storyMode)
+        public override void OnGameStart(bool storyMode)
         {
         }
 
-        public void OnGameEnd(bool failed)
+        public override void OnGameEnd(bool failed)
         {
         }
 
