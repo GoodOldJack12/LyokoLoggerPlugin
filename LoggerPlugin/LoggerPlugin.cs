@@ -6,8 +6,6 @@ namespace LoggerPlugin
     {
         public override string Name { get; } = "LoggerPlugin";
         public override string Author { get; } = "GoodOldJack12";
-        public bool Enabled { get; private set; }
-
         protected override bool OnEnable()
         {
             Logger.StartLogging();
