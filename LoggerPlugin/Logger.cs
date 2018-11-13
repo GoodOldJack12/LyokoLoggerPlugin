@@ -16,6 +16,8 @@ namespace LoggerPlugin
         {
             EnsureInitialized();
             LyokoAPI.Events.LyokoLogger.Subscribe(Log);
+            
+            //Log($"found {findXtermPath()}");
         }
 
         public static void StopLogging()
@@ -78,12 +80,14 @@ namespace LoggerPlugin
         private static string findXtermPath()
         {
             Process process = new Process();
+            process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.FileName = "/bin/bash";
             process.StartInfo.Arguments = "-c \"which xterm\"";
             process.Start();
-            string output = consoleProcess.StandardOutput.ReadToEnd();
             process.WaitForExit();
+            string output = "";
+
             return output;
         }
         

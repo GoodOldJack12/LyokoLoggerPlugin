@@ -15,7 +15,7 @@ namespace LoggerPlugin
         protected override bool OnDisable()
         {
             Logger.StopLogging();
-            return false;
+            return true;
         }
 
         public override void OnGameStart(bool storyMode)
