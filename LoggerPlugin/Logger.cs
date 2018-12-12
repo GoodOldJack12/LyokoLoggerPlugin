@@ -52,7 +52,7 @@ namespace LoggerPlugin
             if (!IsLinux())
             {
                 startInfo.FileName = "powershell.exe";
-                startInfo.Arguments = $"-Command \"$Host.UI.RawUI.WindowTitle = \'Logging {logPath}\';Get-Content {logPath} -wait\"";
+                startInfo.Arguments = $"-noexit -Command \"$Host.UI.RawUI.WindowTitle = \'Logging {logPath}\';Get-Content \'{logPath}\' -wait\"";
             }else if (IsLinux())
             {
                 startInfo.FileName = "/usr/bin/xterm";
