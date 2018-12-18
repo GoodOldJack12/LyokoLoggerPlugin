@@ -48,15 +48,25 @@ namespace LoggerPlugin
 
         private static void EnsureInitialized()
         {
-            if (initialized) return;
-            if (!IsLinux())
+           
+            switch (Environment.OSVersion.Platform)
             {
-                startInfo.FileName = "powershell.exe";
-                startInfo.Arguments = $"-noexit -Command \"$Host.UI.RawUI.WindowTitle = \'Logging {logPath}\';Get-Content \'{logPath}\' -wait\"";
-            }else if (IsLinux())
-            {
-                startInfo.FileName = "/usr/bin/xterm";
-                startInfo.Arguments = $"-T \"Logging {logPath}\" -e tail -f /tmp/LyokoLogger.log ";
+                case PlatformID.Unix:
+                {
+                    startInfo.FileName = "/usr/bin/xterm";
+                    startInfo.Arguments = $"-T \"Logging {logPath}\" -e tail -f /tmp/LyokoLogger.log ";
+                } break;
+                case PlatformID.Win32Windows:
+                {
+                    startInfo.FileName = "powershell.exe";
+                    startInfo.Arguments = $"-noexit -Command \"$Host.UI.RawUI.WindowTitle = \'Logging {logPath}\';Get-Content \'{logPath}\' -wait\"";
+                } break;
+                case PlatformID.MacOSX:
+                {
+                    startInfo.FileName = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal";
+                    startInfo.Arguments = $"echo -n -e \"\\033]0;Logging {logPath}\\007\" && \"tail -f /tmp/LyokoLogger.log\" ";
+                } break;
+                 
             }
             
             
