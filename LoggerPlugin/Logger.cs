@@ -56,6 +56,9 @@ namespace LoggerPlugin
                     startInfo.FileName = "/usr/bin/xterm";
                     startInfo.Arguments = $"-T \"Logging {logPath}\" -e tail -f /tmp/LyokoLogger.log ";
                 } break;
+                case PlatformID.Win32S:
+                case PlatformID.Win32NT:
+                case PlatformID.WinCE:
                 case PlatformID.Win32Windows:
                 {
                     startInfo.FileName = "powershell.exe";
