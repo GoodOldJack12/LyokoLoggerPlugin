@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using LyokoAPI.API;
+using LyokoAPI.API.Compatibility;
 using LyokoAPI.Plugin;
 
 namespace LoggerPlugin
 {
     public class LoggerPlugin : LyokoAPIPlugin
     {
+        
+
         public override string Name { get; } = "LoggerPlugin";
         public override string Author { get; } = "GoodOldJack12";
         public override LVersion Version { get; } = "1.1.0";
@@ -33,6 +36,12 @@ namespace LoggerPlugin
         {
         }
 
-        
+        public override void OnInterfaceExit()
+        {
+            
+        }
+        public override void OnInterfaceEnter()
+        {
+        }
     }
 }
